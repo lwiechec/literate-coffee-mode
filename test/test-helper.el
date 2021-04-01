@@ -1,6 +1,6 @@
 ;;; test-helper.el --- helper for testing coffee-mode
 
-;; Copyright (C) 2014 by Syohei YOSHIDA
+;; Copyright (C) 2017 by Syohei YOSHIDA
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 
@@ -16,8 +16,6 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-;;; Commentary:
 
 ;;; Code:
 
@@ -45,7 +43,5 @@
 
 (defun face-at-cursor-p (face)
   (eq (face-at-point) face))
-
-(provide 'test-helper)
 
 ;;; test-helper.el ends here

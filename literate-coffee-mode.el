@@ -1,6 +1,6 @@
 ;;; literate-coffee-mode.el --- major-mode for Literate CoffeeScript -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014 by Syohei YOSHIDA
+;; Copyright (C) 2017 by Syohei YOSHIDA
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-literate-coffee-mode
@@ -66,8 +66,11 @@
        (goto-char (match-end 1))
        (not (get-text-property (point) 'litcoffee-not-highlight))))
 
+(defvar litcoffee--string-interpolation-regexp
+  "#{[^}\n\\\\]*\\(?:\\\\.[^}\n\\\\]*\\)*}")
+
 (defun litcoffee--font-lock-string-interpolation (limit)
-  (and (re-search-forward coffee-string-interpolation-regexp limit t)
+  (and (re-search-forward litcoffee--string-interpolation-regexp limit t)
        (goto-char (match-end 0))
        (not (get-text-property (point) 'litcoffee-not-highlight))))
 
