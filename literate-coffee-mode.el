@@ -97,12 +97,12 @@
   (goto-char start)
   (funcall
    (syntax-propertize-rules
-    ("^\\(.\\{4\\}\\).*$"
+    ((format "^\\(.\\{%d\\}\\).*$" coffee-tab-width)
      (0 (ignore
          (let ((head-of-line (match-string 1))
                (start (match-beginning 0))
                (end (match-end 0)))
-           (if (string-match-p "\\`\\(\t\\| \\{4,\\}\\)" head-of-line)
+           (if (string-match-p (format "\\`\\(\t\\| \\{%d,\\}\\)" coffee-tab-width) head-of-line)
                (litcoffee--syntax-propertize-regexp-function start end)
              (put-text-property start end 'litcoffee-not-highlight t)
              (save-excursion
@@ -112,7 +112,7 @@
                                     'syntax-table (string-to-syntax "_")))))))))
     (coffee-block-strings-delimiter
      (0 (ignore (coffee-syntax-block-strings-stringify))))
-    ("^[[:space:]]\\{4,\\}*\\(###\\)\\([[:space:]]+.*\\)?$"
+    ((format "^[[:space:]]\\{%d,\\}*\\(###\\)\\([[:space:]]+.*\\)?$" coffee-tab-width)
      (1 (ignore
          (let ((after-triple-hash (match-string-no-properties 2)))
            (when (or (not after-triple-hash)
